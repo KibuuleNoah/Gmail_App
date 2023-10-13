@@ -1,0 +1,271 @@
+#:import MDTopAppBar kivymd.uix.toolbar.MDTopAppBar
+
+#clickable navigation drawer items
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#757575"
+    selected_color: (0,0,0,1)
+    _no_ripple_effect: True
+    focus_behavior: False
+    on_release: app.root.ids.nav_drawer.set_state("close")
+    
+#navigation drawer text labels
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+#Root Screen
+MDScreen:
+    name: "main"
+    MDNavigationLayout:
+        MDScreenManager:
+            id: screen_manager
+            MDScreen:
+                name: "first"
+               
+                #Top App Bar
+                TopBar:
+                    title:"Inbox"
+                    left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["magnify"]]#,lambda x=self.root.current="sec"]]
+                    
+                ScrollView:
+                    pos_hint: {"top":1-0.09}
+                    MDList:
+                        id: inbox
+  
+##########################################################$#
+                        ThreeLineAvatarIconListItem:
+                            text: "Sender"
+                            secondary_text: "Email About"
+                            tertiary_text: "Email Body...."
+                            ImageLeftWidget:
+                                source: "/storage/emulated/0/Kivy_GUI_files/MY_pro/Letters/C.png"
+     
+###########################################################
+
+                #Edit floating button with a pencil
+                Floatingbutton:
+                
+###############################################################
+#            DRAWER    SCREENS
+###############################################################
+            MDScreen:
+                name:"starred"
+                TopBar:
+                    title:"Starred"
+                    left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["magnify"]]
+                
+                ScrollView:
+                    pos_hint: {"top":1-0.09}
+                    MDList:
+                        id:starred_
+                
+                Floatingbutton:
+            
+            MDScreen:
+                name:"important"
+                TopBar:
+                    title:"Important"
+                    left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["magnify"]]#,lambda x=self.root.current="sec"]]
+                
+                ScrollView:
+                    pos_hint: {"top":1-0.09}
+                    MDList:
+                        id:important_
+                
+                Floatingbutton:
+            
+            MDScreen:
+                name:"sent"
+                TopBar:
+                    title:"Sent"
+                    left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["magnify"]]#,lambda x=self.root.current="sec"]]
+                
+                ScrollView:
+                    pos_hint: {"top":1-0.09}
+                    MDList:
+                        id:sent_
+                
+                Floatingbutton:
+            
+            MDScreen:
+                name:"outbox"
+                TopBar:
+                    title:"Outbox"
+                    left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["magnify"]]#,lambda x=self.root.current="sec"]]
+                
+                ScrollView:
+                    pos_hint: {"top":1-0.09}
+                    MDList:
+                        id:outbox_
+                
+                Floatingbutton:
+            
+            MDScreen:
+                name:"drafts"
+                TopBar:
+                    title:"Drafts"
+                    left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["magnify"]]#,lambda x=self.root.current="sec"]]
+                
+                ScrollView:
+                    pos_hint: {"top":1-0.09}
+                    MDList:
+                        id:draft_
+                
+                Floatingbutton:
+            
+            MDScreen:
+                name:"all_mail"
+                TopBar:
+                    title:"All mail"
+                    left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["magnify"]]#,lambda x=self.root.current="sec"]]
+                
+                ScrollView:
+                    pos_hint: {"top":1-0.09}
+                    MDList:
+                        id:all_mail_
+                
+                Floatingbutton:
+            
+            MDScreen:
+                name:"spam"
+                TopBar:
+                    title:"Spam"
+                    left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["magnify"]]#,lambda x=self.root.current="sec"]]
+                
+                ScrollView:
+                    pos_hint: {"top":1-0.09}
+                    MDList:
+                        id:spam_
+                
+                Floatingbutton:
+            
+            MDScreen:
+                name:"trash"
+                TopBar:
+                    title:"Trash"
+                    left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["magnify"]]
+                
+                ScrollView:
+                    pos_hint: {"top":1-0.09}
+                    MDList:
+                        id:trash_
+                
+                Floatingbutton:
+###############################################################
+#            NAVIGATION DRAWER
+###############################################################
+        MDNavigationDrawer:
+            id: nav_drawer
+            #Drawer Menu
+            radius:0,0,0,0
+            line_color:1,0,0,1
+            swipe_edge_width:0
+            swipe_distance:500
+            MDNavigationDrawerMenu:
+                id:nav_
+                smooth_scroll_end:30
+                #Drawer Header
+                MDNavigationDrawerHeader:
+                    title: "Noah"
+                    text_color:1,1,1,1
+                    text: "example@gamail.com"
+                    icon_right: "menu"
+                    md_bg_color: "#DC4437"
+                    height:10
+                    
+                    title_font_size:"17dp"
+                    text_font_size:"15dp"
+                    padding: 0, 0, 0, 0
+               
+                DrawerClickableItem:
+                    icon:"inbox"
+                    text: "Inbox"
+                    right_text: "99+"
+                    on_release: app.Main(screen_manager)
+                #Drawer Divider
+                MDNavigationDrawerDivider:
+                
+                MDNavigationDrawerLabel:
+                    text: "All labels"
+                #starred emails
+                DrawerClickableItem:
+                    id:test
+                    icon: "star"
+                    text: "Starred"
+                    right_text:""
+                    on_press:app.Starred(screen_manager)
+                #important emails
+                DrawerClickableItem:
+                    icon:"forward"
+                    text: "Important"
+                    right_text:""
+                    on_press:app.Important(screen_manager)
+                #sent emails
+                DrawerClickableItem:
+                    icon:"send"
+                    text: "Sent"
+                    on_press:app.Sent(screen_manager)
+                #outbox emails
+                DrawerClickableItem:
+                    icon:"send-variant"
+                    text: "Outbox"
+                    right_text:""
+                    on_press:app.Outbox(screen_manager)
+                #draft emails
+                DrawerClickableItem:
+                    icon:"file"
+                    text: "Drafts"
+                    right_text:""
+                    on_press:app.Drafts(screen_manager)
+                #all emails
+                DrawerClickableItem:
+                    icon: "email-multiple"
+                    text: "All mail"
+                    right_text:"99+"
+                    on_press:app.All_mails(screen_manager)
+                #spam emails
+                DrawerClickableItem:  
+                    icon:"alert-octagon"
+                    text: "Spam"
+                    right_text:""
+                    on_press:app.Spam(screen_manager)
+                #trashed emails
+                DrawerClickableItem:
+                    icon:"delete"
+                    text: "Trash"  
+                    right_text:""
+                    on_press:app.Trash(screen_manager)
+                
+                MDNavigationDrawerDivider:
+                
+                MDNavigationDrawerLabel:
+                    text: "Google apps"
+                DrawerClickableItem:
+                    icon:"calendar"
+                    text: "Calendar"
+                DrawerClickableItem:
+                    icon:"account-circle"
+                    text: "Contacts"
+                    
+                MDNavigationDrawerDivider:
+                
+                DrawerClickableItem:
+                    icon:"cog"
+                    text: "Settings"
+                DrawerClickableItem:
+                    icon:"help"
+                    text: "Help & FeedBack"
